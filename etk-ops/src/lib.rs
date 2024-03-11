@@ -13,17 +13,6 @@
 use snafu::{Backtrace, Snafu};
 
 use std::borrow::{Borrow, BorrowMut};
-
-pub mod london {
-    //! Instructions available in the London hard fork.
-    include!(concat!(env!("OUT_DIR"), "/london.rs"));
-}
-
-pub mod shanghai {
-    //! Instructions available in the Shanghai hard fork.
-    include!(concat!(env!("OUT_DIR"), "/shanghai.rs"));
-}
-
 pub mod cancun {
     //! Instructions available in the Cancun hard fork.
     include!(concat!(env!("OUT_DIR"), "/cancun.rs"));

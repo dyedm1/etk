@@ -427,6 +427,11 @@ impl Expr {
         Self::concat(Sym::SLoad, &[self])
     }
 
+    /// Create an [`Expr`] representing `tload` (`0x54`).
+    pub fn t_load(&self) -> Self {
+        Self::concat(Sym::TLoad, &[self])
+    }
+
     /// If this expression represents a single [`Var`] instance, return it.
     /// Otherwise return `None`.
     pub fn as_var(&self) -> Option<Var> {
@@ -535,6 +540,7 @@ impl<'a, 'b> Visit for DisplayVisit<'a, 'b> {
             Sym::ExtCodeHash => write!(self.0, "extcodehash("),
             Sym::MLoad => write!(self.0, "mload("),
             Sym::SLoad => write!(self.0, "sload("),
+            Sym::TLoad => write!(self.0, "tload("),
             Sym::Address => write!(self.0, "address("),
             Sym::Balance => write!(self.0, "balance("),
             Sym::Origin => write!(self.0, "origin("),
@@ -744,6 +750,9 @@ pub enum Sym {
     /// An `sload` (`0x54`) operation.
     SLoad,
 
+    /// An `tload` (`0x54`) operation.
+    TLoad,
+
     /// A `balance` (`0x31`) operation.
     Balance,
 
@@ -861,6 +870,7 @@ impl Sym {
             | Sym::Balance
             | Sym::MLoad
             | Sym::SLoad => 1,
+            | Sym::TLoad => 1,
 
             Sym::Address
             | Sym::Origin

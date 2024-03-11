@@ -296,6 +296,11 @@ impl<'z> Visit for Z3Visit<'z> {
                 let _addr = self.arguments.pop().unwrap();
                 BV::fresh_const(self.context, "sload", 256)
             }
+            
+            Sym::TLoad => {
+                let _addr = self.arguments.pop().unwrap();
+                BV::fresh_const(self.context, "tload", 256)
+            }
 
             Sym::Balance => {
                 let _addr = self.arguments.pop().unwrap();
